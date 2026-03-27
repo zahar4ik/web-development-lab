@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+/* 1. Визначаємо колірну схему через змінні */
+:root {
+    --primary-color: #e74c3c;    /* Основний колір (темно-синій) */
+    --accent-color: #3498db;     /* Акцентний (блакитний) */
+    --text-color: #ffffff;       /* Колір тексту (білий) */
+    --bg-color: #f4f4f4;         /* Фон сторінки (світло-сірий) */
+  }
+  
+  /* Базові стилі для всього сайту */
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+  }
