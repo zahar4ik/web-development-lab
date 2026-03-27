@@ -12,6 +12,7 @@ export class FooterComponent {
   // Объект согласно интерфейсу
   public footerConfig: AppInfo = {
     title: 'Web Dev Studio',
+    author: 'Твоё Имя',
     year: new Date().getFullYear() // Эта строчка сама поставит 2026 год
   };
 }

@@ -1,1 +1,23 @@
-<p>card works!</p>
+<div class="project-card">
+    <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+    
+    <div class="card-content">
+      <h3>{{ project.title }}</h3>
+      <p class="description">{{ project.description }}</p>
+      
+      <div class="details">
+        <span class="status-badge">Status: {{ project.status }}</span>
+        
+        <div class="tags">
+          <small *ngFor="let tag of project.tags">#{{ tag }} </small>
+        </div>
+  
+        <p><strong>Framework:</strong> {{ project.specs.framework }}</p>
+        
+        <div class="footer-info">
+          <span class="date">{{ project.releaseDate | date:'dd.MM.yyyy' }}</span>
+          <span class="price">{{ project.price | currency:'USD':'symbol':'1.0-0' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

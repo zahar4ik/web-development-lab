@@ -10,6 +10,7 @@ import { AppInfo } from '../../shared/models/appInfo';
 export class HeaderComponent {
   public headerConfig: AppInfo = {
     title: 'Web Dev Studio',
+    author: 'Твоё Имя',
     year: 2026
   };
 }
