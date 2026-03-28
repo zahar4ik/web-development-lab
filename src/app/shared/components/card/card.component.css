@@ -1,13 +1,104 @@
+/* Основна картка (додано position: relative для позиціонування елементів) */
 .project-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 300px;
-    font-family: sans-serif;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  .project-image { width: 100%; height: 200px; object-fit: cover; }
-  .card-content { padding: 15px; }
-  .status-badge { background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; }
-  .footer-info { display: flex; justify-content: space-between; margin-top: 15px; font-weight: bold; }
-  .price { color: #2e7d32; }
+  position: relative; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%; 
+  max-width: 320px;
+  font-family: sans-serif;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: #fff;
+  transition: all 0.3s ease; /* Плавний перехід для всіх властивостей */
+}
+
+/* ДИНАМІЧНИЙ СТИЛЬ: Золота рамка та ефект для дорогих проектів */
+.premium-card {
+  border: 2px solid #ffd700 !important;
+  box-shadow: 0 8px 15px rgba(255, 215, 0, 0.3);
+  background-color: #fffdf0; /* Легкий золотистий відтінок фону */
+}
+
+.premium-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: gold;
+  color: #333;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 3;
+}
+
+.project-card:hover { transform: translateY(-5px); }
+.project-image { width: 100%; height: 200px; object-fit: cover; }
+.card-content { padding: 15px; }
+h3 { margin-top: 0; color: #333; }
+.description { color: #666; font-size: 0.9em; min-height: 40px; }
+
+/* Спеціальна стрічка Акції */
+.promo-ribbon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff4757;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.7rem;
+  z-index: 2;
+}
+
+.status-indicator { margin: 10px 0; }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px; 
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-active { background-color: #28a745; }   
+.badge-completed { background-color: #007bff; } 
+.badge-archived { background-color: #6c757d; }  
+
+.tags { margin-top: 10px; }
+.tags small {
+  background: #f0f0f0;
+  padding: 2px 6px;
+  margin-right: 5px;
+  border-radius: 4px;
+  color: #555;
+}
+
+.footer-info { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin-top: 15px; 
+  padding-bottom: 10px;
+  border-top: 1px solid #eee;
+  font-weight: bold; 
+}
+.date { color: #888; font-size: 0.85em; }
+.price { color: #2e7d32; font-size: 1.1em; }
+
+.actions { margin-top: 15px; }
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.btn-buy { background-color: #333; color: white; }
+.btn-buy:hover { background-color: #555; }
+.btn-out { background-color: #f8f9fa; color: #adb5bd; cursor: not-allowed; border: 1px solid #dee2e6; }
