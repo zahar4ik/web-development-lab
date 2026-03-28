@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common'; // Для пайпов date, cur
 import { Project } from '../../models/project';
 
 @Component({
-  selector: 'app-card', // Или твой префикс, например 'shop-card'
+  selector: 'web-card', // Или твой префикс, например 'shop-card'
   standalone: true,
   imports: [CommonModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.css'
+  styleUrl: './card.component.css',
 })
 export class CardComponent {
   // Настройка { required: true } гарантирует, что компонент не будет создан без данных

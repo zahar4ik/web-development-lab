@@ -1,7 +1,7 @@
 .list-container {
     padding: 20px;
     max-width: 1200px;
-    margin: 0 auto; /* Центруємо весь блок на сторінці */
+    margin: 0 auto; 
   }
   
   h2 {
@@ -12,10 +12,7 @@
   
   .projects-grid {
     display: grid;
-    /* Адаптивна сітка: мінімум 280px, максимум — 1 частина вільного простору */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    /* Відступи між картками */
     gap: 25px;
-    /* Центрування карток, якщо їх мало в ряду */
     justify-items: center;
   }

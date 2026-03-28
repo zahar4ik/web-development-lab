@@ -1,6 +1,5 @@
 import { Project, ProjectStatus } from './models/project';
 
-// Експортуємо масив проектів для використання в компонентах
 export const PROJECTS: Project[] = [
   {
     id: '1',
@@ -35,19 +34,9 @@ export const PROJECTS: Project[] = [
     tags: ['UI/UX', 'Portfolio', 'CSS'],
     specs: { framework: 'Vanilla JS', durationMonths: 1 }
   },
+  
   {
     id: '4',
-    title: 'Real Estate Dashboard',
-    description: 'Admin panel for managing property listings and agents.',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bbda483387a5?w=500',
-    price: 2200,
-    releaseDate: new Date('2026-03-01'),
-    status: ProjectStatus.Active,
-    tags: ['Dashboard', 'D3.js', 'Firebase'],
-    specs: { framework: 'Angular 19', durationMonths: 8 }
-  },
-  {
-    id: '5',
     title: 'Recipe Book Site',
     description: 'Community-driven site for sharing and rating cooking recipes.',
     imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500',
@@ -58,7 +47,7 @@ export const PROJECTS: Project[] = [
     specs: { framework: 'Angular', durationMonths: 2 }
   },
   {
-    id: '6',
+    id: '5',
     title: 'AI Image Generator',
     description: 'Integration with DALL-E API to generate custom graphics.',
     imageUrl: 'https://images.unsplash.com/photo-1675271591211-126ad94e495d?w=500',
