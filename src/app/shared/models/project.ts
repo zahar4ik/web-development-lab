@@ -1,25 +1,25 @@
 // --- Enum (Перерахування статусів) ---
 export enum ProjectStatus {
-    Active = 'Active',
-    Completed = 'Completed',
-    Archived = 'Archived'
-  }
-  
-  // --- Nested Object (Вкладений інтерфейс для характеристик) ---
-  export interface ProjectSpecs {
-    framework: string;
-    durationMonths: number;
-  }
-  
-  // --- Основна сутність (Interface) ---
-  export interface Project {
-    id: string;                // id (string)
-    title: string;             // title
-    description: string;       // description
-    imageUrl: string;          // imageUrl
-    price: number;             // price (number)
-    releaseDate: Date;         // Date
-    status: ProjectStatus;     // Enum
-    tags: string[];            // Array (string[])
-    specs: ProjectSpecs;       // Nested Object
-  }
+  Active = 'Active',
+  Completed = 'Completed',
+  Archived = 'Archived'
+}
+
+export interface ProjectSpecs {
+  framework: string;
+  durationMonths: number;
+}
+
+export interface Project {
+  id: string;                
+  title: string;            
+  description: string;      
+  imageUrl: string;          
+  price: number;             
+  releaseDate: Date;         
+  status: ProjectStatus;    
+  tags: string[];           
+  specs?: ProjectSpecs; 
+  isPromo: boolean;   
+  quantity: number;   
+}

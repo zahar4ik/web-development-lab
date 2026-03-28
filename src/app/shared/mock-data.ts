@@ -1,3 +1,4 @@
+
 import { Project, ProjectStatus } from './models/project';
 
 export const PROJECTS: Project[] = [
@@ -10,7 +11,9 @@ export const PROJECTS: Project[] = [
     releaseDate: new Date('2025-12-20'),
     status: ProjectStatus.Active,
     tags: ['Angular', 'Node.js', 'Stripe'],
-    specs: { framework: 'Angular 19', durationMonths: 6 }
+    specs: { framework: 'Angular 19', durationMonths: 6 },
+    isPromo: true,   
+    quantity: 5      
   },
   {
     id: '2',
@@ -21,7 +24,9 @@ export const PROJECTS: Project[] = [
     releaseDate: new Date('2026-01-15'),
     status: ProjectStatus.Completed,
     tags: ['Mobile', 'Health', 'TypeScript'],
-    specs: { framework: 'Ionic', durationMonths: 3 }
+    // specs: { framework: 'Ionic', durationMonths: 3 }, // <--- УДАЛИЛИ ЭТУ СТРОКУ
+    isPromo: false,
+    quantity: 10     
   },
   {
     id: '3',
@@ -32,9 +37,10 @@ export const PROJECTS: Project[] = [
     releaseDate: new Date('2024-11-10'),
     status: ProjectStatus.Archived,
     tags: ['UI/UX', 'Portfolio', 'CSS'],
-    specs: { framework: 'Vanilla JS', durationMonths: 1 }
+    specs: { framework: 'Vanilla JS', durationMonths: 1 },
+    isPromo: false,
+    quantity: 0      
   },
-  
   {
     id: '4',
     title: 'Recipe Book Site',
@@ -44,7 +50,9 @@ export const PROJECTS: Project[] = [
     releaseDate: new Date('2025-05-22'),
     status: ProjectStatus.Completed,
     tags: ['Blog', 'Recipes', 'SEO'],
-    specs: { framework: 'Angular', durationMonths: 2 }
+    specs: { framework: 'Angular', durationMonths: 2 },
+    isPromo: true,   
+    quantity: 2     
   },
   {
     id: '5',
@@ -55,6 +63,8 @@ export const PROJECTS: Project[] = [
     releaseDate: new Date('2026-02-14'),
     status: ProjectStatus.Active,
     tags: ['AI', 'Python', 'Innovation'],
-    specs: { framework: 'Angular 19', durationMonths: 5 }
+    specs: { framework: 'Angular 19', durationMonths: 5 },
+    isPromo: false,
+    quantity: 1      
   }
 ];
