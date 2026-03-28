@@ -1,23 +1,54 @@
-<div class="project-card">
-    <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
-    
-    <div class="card-content">
-      <h3>{{ project.title }}</h3>
-      <p class="description">{{ project.description }}</p>
-      
-      <div class="details">
-        <span class="status-badge">Status: {{ project.status }}</span>
-        
-        <div class="tags">
-          <small *ngFor="let tag of project.tags">#{{ tag }} </small>
-        </div>
+<div class="project-card" [class.premium-card]="project.price > 1000">
   
-        <p><strong>Framework:</strong> {{ project.specs.framework }}</p>
-        
-        <div class="footer-info">
-          <span class="date">{{ project.releaseDate | date:'dd.MM.yyyy' }}</span>
-          <span class="price">{{ project.price | currency:'USD':'symbol':'1.0-0' }}</span>
-        </div>
+  @if (project.price > 1000) {
+    <div class="premium-label">⭐ PREMIUM</div>
+  }
+
+  @if (project.isPromo) {
+    <div class="promo-ribbon">🔥 АКЦІЯ</div>
+  }
+
+  <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+  
+  <div class="card-content">
+    <h3>{{ project.title }}</h3>
+    <p class="description">{{ project.description }}</p>
+    
+    <div class="details">
+      <div class="status-indicator">
+        @switch (project.status) {
+          @case ('Active') { <span class="badge badge-active">В процесі</span> }
+          @case ('Completed') { <span class="badge badge-completed">Завершено</span> }
+          @case ('Archived') { <span class="badge badge-archived">В архіві</span> }
+          @default { <span class="badge">Статус не визначено</span> }
+        }
+      </div>
+      
+      <div class="tags">
+        @for (tag of project.tags; track tag) {
+          <small>#{{ tag }} </small>
+        }
+      </div>
+
+      <p>
+        <strong>Framework:</strong> 
+        {{ project.specs?.framework || 'Не вказано' }}
+      </p>
+      
+      <div class="footer-info">
+        <span class="date">{{ project.releaseDate | date:'dd.MM.yyyy' }}</span>
+        <span class="price">{{ project.price | currency:'USD':'symbol':'1.0-0' }}</span>
+      </div>
+
+      <div class="actions">
+        @if (project.quantity > 0) {
+          <button class="btn btn-buy" (click)="onBtnClick()">
+            Купити ({{ project.quantity }})
+          </button>
+        } @else {
+          <button class="btn btn-out" disabled>Немає в наявності</button>
+        }
       </div>
     </div>
   </div>
+</div>

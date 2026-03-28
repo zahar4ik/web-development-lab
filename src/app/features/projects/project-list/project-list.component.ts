@@ -12,4 +12,9 @@ import { CardComponent } from '../../../shared/components/card/card.component';
 })
 export class ProjectListComponent {
   public projects = PROJECTS;
+
+  handleCardAction(id: string): void {
+    console.log(`Користувач натиснув кнопку на товарі з ID: ${id}`);
+    alert(`Товар з ID ${id} додано до кошика!`);
+  }
 }

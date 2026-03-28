@@ -1,11 +1,14 @@
 <div class="list-container">
-    <h2>Our Projects</h2>
-    
-    <div class="projects-grid">
-      @for (item of projects; track item.id) {
-        <web-card [project]="item"></web-card>
-      } @empty {
-        <p>No projects found.</p>
-      }
-    </div>
+  <h2>Our Projects</h2>
+  
+  <div class="projects-grid">
+    @for (item of projects; track item.id) {
+      <web-card 
+        [project]="item" 
+        (addToCart)="handleCardAction($event)">
+      </web-card>
+    } @empty {
+      <p>No projects found.</p>
+    }
   </div>
+</div>
