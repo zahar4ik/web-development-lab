@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from '../../../shared/components/card/card.component';
-import { Project, ProjectStatus } from '../../../shared/models/project';
-
+import { ProjectStatus, Project } from '../../../shared/models/project';
 import { ProjectService } from '../../../shared/services/project'; 
 
 @Component({
@@ -14,7 +13,6 @@ import { ProjectService } from '../../../shared/services/project';
   styleUrl: './project-list.component.css',
 })
 export class ProjectListComponent implements OnInit {
-  public allProjects: Project[] = []; 
   public filteredProjects: Project[] = [];
   
   public searchQuery: string = '';
@@ -24,21 +22,14 @@ export class ProjectListComponent implements OnInit {
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.loadData();
-  }
-
-  private loadData(): void {
-    this.allProjects = this.projectService.getAll();
-    this.filterItems(); 
+    this.filterItems();
   }
 
   public filterItems(): void {
-    const query = this.searchQuery.toLowerCase().trim();
-    this.filteredProjects = this.allProjects.filter(project => {
-      const matchesSearch = project.title.toLowerCase().includes(query);
-      const matchesStatus = this.selectedStatus === 'All' || project.status === this.selectedStatus;
-      return matchesSearch && matchesStatus;
-    });
+    this.filteredProjects = this.projectService.getFilteredItems(
+      this.searchQuery, 
+      this.selectedStatus
+    );
   }
 
   public resetFilters(input: HTMLInputElement): void {
@@ -50,9 +41,9 @@ export class ProjectListComponent implements OnInit {
 
   public handleCardAction(id: string): void {
     this.projectService.deleteItem(id);
+    
+    this.filterItems();
 
-    this.loadData();
-
-    console.log(`Проект з ID: ${id} видалено. Список оновлено вручну.`);
+    console.log(`Проект ${id} видалено. Список оновлено через сервіс.`);
   }
 }
