@@ -14,14 +14,19 @@ export class ProjectService {
     return [...this.items];
   }
 
-  getById(id: string): Project | undefined {
-    return this.items.find(item => item.id === id);
+  deleteItem(id: string): void {
+    this.items = this.items.filter(item => item.id !== id);
   }
 
-  // --- Етап 3: Метод видалення ---
-  deleteItem(id: string): void {
-    // Перезаписуємо масив, залишаючи всі елементи, крім того, чий ID збігається
-    this.items = this.items.filter(item => item.id !== id);
-    console.log(`Проект з ID ${id} видалено з бази даних сервісу`);
+  // --- Етап 6: Логіка фільтрації тепер тут ---
+  getFilteredItems(query: string, status: string): Project[] {
+    const lowerQuery = query.toLowerCase().trim();
+
+    return this.items.filter(project => {
+      const matchesSearch = project.title.toLowerCase().includes(lowerQuery);
+      const matchesStatus = status === 'All' || project.status === status;
+      
+      return matchesSearch && matchesStatus;
+    });
   }
 }
