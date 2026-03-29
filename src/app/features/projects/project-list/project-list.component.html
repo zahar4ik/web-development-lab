@@ -1,39 +1,42 @@
-<div class="list-container">
-  <h2>Our Projects</h2>
+<div class="main-container">
+  <h2 class="page-title">Our Projects</h2>
 
-  <div class="filter-section">
+  <div class="filters-wrapper">
     <input 
       #searchInput
       type="text" 
-      placeholder="Пошук за назвою..." 
       [(ngModel)]="searchQuery" 
-      (ngModelChange)="filterItems()"
+      (input)="filterItems()" 
+      placeholder="Пошук за назвою..." 
       class="search-input"
     >
-
-    <select 
-      [(ngModel)]="selectedStatus" 
-      (ngModelChange)="filterItems()" 
-      class="status-select"
-    >
+    
+    <select [(ngModel)]="selectedStatus" (change)="filterItems()" class="status-select">
       <option value="All">Усі статуси</option>
       @for (status of statusOptions; track status) {
-        <option [value]="status">{{ status }}</option>
+        <option [value]="status">{{status}}</option>
       }
     </select>
-
-    <button class="btn-reset" (click)="resetFilters(searchInput)">
-      Очистити
-    </button>
+    
+    <button (click)="resetFilters(searchInput)" class="btn-clear">Очистити</button>
   </div>
-  
-  <p class="results-count">Знайдено: {{ filteredProjects.length }}</p>
 
-  <div class="projects-grid">
-    @for (item of filteredProjects; track item.id) {
-      <web-card [project]="item" (addToCart)="handleCardAction($event)"></web-card>
-    } @empty {
-      <p class="no-data">Нічого не знайдено.</p>
-    }
-  </div>
+  <p class="results-count">
+    Знайдено: {{ (projects$ | async)?.length || 0 }}
+  </p>
+
+  @if (projects$ | async; as projects) {
+    <div class="projects-grid">
+      @for (item of projects; track item.id) {
+        <web-card [project]="item" (addToCart)="handleCardAction($event)"></web-card>
+      } @empty {
+        <p class="empty-msg">Проєктів не знайдено.</p>
+      }
+    </div>
+  } @else {
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p>Завантаження проектів...</p>
+    </div>
+  }
 </div>
