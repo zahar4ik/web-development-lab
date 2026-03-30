@@ -1,8 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router'; // Додаємо імпорт для навігації
+import { RouterLink } from '@angular/router';
 import { Project, ProjectStatus } from '../../models/project';
-import { TruncatePipe } from '../pipes/truncate.pipe';
+
+// Переконайтеся, що файл реально лежить у папці shared/pipes/
+// Якщо не знаходить, спробуйте переписати шлях за допомогою автодоповнення VS Code
+import { TruncatePipe } from '../../pipes/truncate.pipe'; 
 
 @Component({
   selector: 'web-card',

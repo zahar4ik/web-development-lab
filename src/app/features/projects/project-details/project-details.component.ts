@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// ДОДАЙТЕ ЦЕЙ РЯДОК:
 import { RouterLink } from '@angular/router'; 
+
 import { Observable } from 'rxjs';
 import { Project } from '../../../shared/models/project';
 import { ProjectService } from '../../../shared/services/project';
@@ -8,7 +10,7 @@ import { ProjectService } from '../../../shared/services/project';
 @Component({
   selector: 'web-project-details',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink], // Тепер RouterLink буде розпізнано
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.css'
 })
