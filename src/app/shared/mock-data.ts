@@ -1,4 +1,3 @@
-
 import { Project, ProjectStatus } from './models/project';
 
 export const PROJECTS: Project[] = [
@@ -24,7 +23,7 @@ export const PROJECTS: Project[] = [
     releaseDate: new Date('2026-01-15'),
     status: ProjectStatus.Completed,
     tags: ['Mobile', 'Health', 'TypeScript'],
-    // specs: { framework: 'Ionic', durationMonths: 3 }, // <--- УДАЛИЛИ ЭТУ СТРОКУ
+    specs: { framework: 'Ionic', durationMonths: 3 }, // ПОВЕРНУЛИ СТРОКУ
     isPromo: false,
     quantity: 10     
   },

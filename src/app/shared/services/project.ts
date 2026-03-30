@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Project, ProjectStatus } from '../models/project';
+import { Project } from '../models/project';
 import { FilterOptions } from '../models/filter-options';
 import { PROJECTS } from '../mock-data';
 import { Observable, BehaviorSubject, of, delay, debounceTime, distinctUntilChanged, map } from 'rxjs';
@@ -10,25 +10,23 @@ import { Observable, BehaviorSubject, of, delay, debounceTime, distinctUntilChan
 export class ProjectService {
   private allItems: Project[] = PROJECTS;
 
-  // Потік для даних
+  // Потік для списку даних
   private itemsSubject$ = new BehaviorSubject<Project[]>(this.allItems);
   public items$ = this.itemsSubject$.asObservable();
 
-  // 2. Сабджект для налаштувань фільтрації
+  // Сабджект для налаштувань фільтрації
   private filterSubject$ = new BehaviorSubject<FilterOptions>({
     query: '',
     status: 'All'
   });
 
   constructor() {
-    // 4. Налаштовуємо реакцію на зміни фільтра
     this.filterSubject$.pipe(
-      debounceTime(500), // Чекаємо 0.5с, поки користувач друкує
+      debounceTime(500),
       distinctUntilChanged((prev, curr) => 
         JSON.stringify(prev) === JSON.stringify(curr)
-      ), // Не реагуємо, якщо нічого не змінилося
+      ),
       map(options => {
-        // Логіка фільтрації з ПР №4/5
         return this.allItems.filter(item => {
           const matchesQuery = item.title.toLowerCase().includes(options.query.toLowerCase().trim());
           const matchesStatus = options.status === 'All' || item.status === options.status;
@@ -36,12 +34,24 @@ export class ProjectService {
         });
       })
     ).subscribe(filteredResult => {
-      // Оновлюємо головний потік, який бачить компонент через AsyncPipe
       this.itemsSubject$.next(filteredResult);
     });
   }
 
-  // 3. Оновлений метод filterItems: просто штовхаємо нові значення в потік
+  /**
+   * ЕТАП 2: Пошук проекту за ID
+   * Додаємо цей метод для 7-ї лабораторної
+   */
+  public getById(id: number | string): Observable<Project | undefined> {
+    // Шукаємо проект у масиві allItems за ідентифікатором
+    const project = this.allItems.find(item => item.id.toString() === id.toString());
+    
+    // Повертаємо Observable з результатом та затримкою 1с
+    return of(project).pipe(
+      delay(1000)
+    );
+  }
+
   updateFilters(options: FilterOptions): void {
     this.filterSubject$.next(options);
   }
@@ -52,7 +62,6 @@ export class ProjectService {
 
   deleteItem(id: string): void {
     this.allItems = this.allItems.filter(item => item.id !== id);
-    // Після видалення треба оновити фільтр, щоб список перерахувався
     this.updateFilters(this.filterSubject$.value);
   }
 }
