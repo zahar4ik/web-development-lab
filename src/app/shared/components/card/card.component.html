@@ -8,10 +8,18 @@
     <div class="promo-ribbon">🔥 АКЦІЯ</div>
   }
 
-  <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+  <img 
+    [src]="project.imageUrl" 
+    [alt]="project.title" 
+    class="project-image"
+    [routerLink]="['/product', project.id]"
+    style="cursor: pointer;"
+  >
   
   <div class="card-content">
-    <h3>{{ project.title }}</h3>
+    <h3 [routerLink]="['/product', project.id]" style="cursor: pointer; color: #2e7d32;">
+      {{ project.title }}
+    </h3>
     <p class="description">{{ project.description }}</p>
     
     <div class="details">
@@ -41,6 +49,10 @@
       </div>
 
       <div class="actions">
+        <button class="btn btn-details" [routerLink]="['/product', project.id]">
+          Детальніше
+        </button>
+
         @if (project.quantity > 0) {
           <button class="btn btn-buy" (click)="onBtnClick()">
             Купити ({{ project.quantity }})
