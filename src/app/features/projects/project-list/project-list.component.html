@@ -21,9 +21,7 @@
     <button (click)="resetFilters(searchInput)" class="btn-clear">Очистити</button>
   </div>
 
-  <p class="results-count">
-    Знайдено: {{ (projects$ | async)?.length || 0 }}
-  </p>
+  <p class="results-count">Знайдено: {{ (projects$ | async)?.length || 0 }}</p>
 
   @if (projects$ | async; as projects) {
     <div class="projects-grid">
