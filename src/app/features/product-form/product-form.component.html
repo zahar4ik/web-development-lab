@@ -1,0 +1,75 @@
+<div class="form-container">
+    <h2>Додати новий проект</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="title">Назва проекту</label>
+        <input id="title" type="text" formControlName="title" class="form-control"
+               [class.is-invalid]="form.get('title')?.invalid && form.get('title')?.touched">
+        
+        @if (form.get('title')?.invalid && (form.get('title')?.touched || form.get('title')?.dirty)) {
+          <div class="error-msg">
+            @if (form.get('title')?.hasError('required')) { <p>Поле обов'язкове для заповнення</p> }
+            @if (form.get('title')?.hasError('minlength')) { <p>Назва занадто коротка (мінімум 3 символи)</p> }
+            @if (form.get('title')?.hasError('forbiddenName')) { <p>Ця назва заборонена (не використовуйте "admin")</p> }
+          </div>
+        }
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Опис</label>
+        <textarea id="description" formControlName="description" class="form-control"
+                  [class.is-invalid]="form.get('description')?.invalid && form.get('description')?.touched"></textarea>
+        
+        @if (form.get('description')?.invalid && form.get('description')?.touched) {
+          <div class="error-msg">
+            @if (form.get('description')?.hasError('required')) { <p>Опис не може бути порожнім</p> }
+            @if (form.get('description')?.hasError('minlength')) { <p>Опишіть проект детальніше (від 10 символів)</p> }
+          </div>
+        }
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label for="price">Ціна (USD)</label>
+          <input id="price" type="number" formControlName="price" class="form-control">
+          @if (form.get('price')?.invalid && form.get('price')?.touched) {
+            <div class="error-msg">
+              @if (form.get('price')?.hasError('min')) { <p>Ціна не може бути від'ємною</p> }
+            </div>
+          }
+        </div>
+  
+        <div class="form-group">
+          <label for="status">Статус</label>
+          <select id="status" formControlName="status" class="form-control">
+            @for (opt of statusOptions; track opt) {
+              <option [value]="opt">{{ opt }}</option>
+            }
+          </select>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="imageUrl">URL зображення</label>
+        <input id="imageUrl" type="text" formControlName="imageUrl" class="form-control" placeholder="https://...">
+        
+        @if (form.get('imageUrl')?.invalid && form.get('imageUrl')?.touched) {
+          <div class="error-msg">
+            @if (form.get('imageUrl')?.hasError('required')) { <p>Посилання на фото є обов'язковим</p> }
+            @if (form.get('imageUrl')?.hasError('pattern')) { <p>Введіть коректний URL (починаючи з http або https)</p> }
+          </div>
+        }
+      </div>
+  
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" routerLink="/products">Скасувати</button>
+        
+        <button type="submit" class="btn-submit" [disabled]="form.invalid">
+          Зберегти проект
+        </button>
+      </div>
+  
+    </form>
+  </div>
