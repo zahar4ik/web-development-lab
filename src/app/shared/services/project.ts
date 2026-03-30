@@ -39,14 +39,25 @@ export class ProjectService {
   }
 
   /**
+   * ЕТАП 1 (Лаба 9): Додавання нового проекту
+   */
+  public addItem(newItem: Project): void {
+    // 1. Оновлюємо локальний масив (master list)
+    // Використовуємо spread-оператор для імутабельності (хороша практика)
+    this.allItems = [...this.allItems, newItem];
+
+    // 2. Оновлюємо потік даних. 
+    // Оскільки конструктор автоматично реагує на filterSubject$, 
+    // ми просто "штовхаємо" поточні фільтри, щоб новий елемент з'явився у списку.
+    this.updateFilters(this.filterSubject$.value);
+  }
+
+  /**
    * ЕТАП 2: Пошук проекту за ID
-   * Додаємо цей метод для 7-ї лабораторної
    */
   public getById(id: number | string): Observable<Project | undefined> {
-    // Шукаємо проект у масиві allItems за ідентифікатором
     const project = this.allItems.find(item => item.id.toString() === id.toString());
     
-    // Повертаємо Observable з результатом та затримкою 1с
     return of(project).pipe(
       delay(1000)
     );
