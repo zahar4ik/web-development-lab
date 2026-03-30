@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router'; 
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { ProjectStatus, Project } from '../../../shared/models/project';
 import { ProjectService } from '../../../shared/services/project'; 
@@ -9,32 +10,26 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'web-project-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardComponent],
+  imports: [CommonModule, FormsModule, CardComponent, RouterLink],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.css',
 })
 export class ProjectListComponent implements OnInit {
-  // Потік даних, який ми виводимо в HTML через AsyncPipe
-  public projects$: Observable<Project[]>;
-  
+  // 1. Інжектуємо сервіс через inject (більш сучасний підхід)
+  private projectService = inject(ProjectService);
+
+  // 2. Оголошуємо ВСІ змінні, які потребує HTML-шаблон
+  public projects$: Observable<Project[]> = this.projectService.items$;
   public searchQuery: string = '';
   public selectedStatus: string = 'All';
   public statusOptions = Object.values(ProjectStatus);
 
-  constructor(private projectService: ProjectService) {
-    // Одразу ініціалізуємо потік із сервісу
-    this.projects$ = this.projectService.items$;
-  }
-
+  // 3. Реалізуємо ngOnInit (вимагається через implements OnInit)
   ngOnInit(): void {
-    // При завантаженні просто показуємо всі проекти через сервіс
     this.filterItems();
   }
 
-  /**
-   * Етап 4: Тепер цей метод НЕ фільтрує масив вручну.
-   * Він просто передає об'єкт з налаштуваннями у "реактивний мізок" сервісу.
-   */
+  // 4. Метод для фільтрації
   public filterItems(): void {
     this.projectService.updateFilters({
       query: this.searchQuery,
@@ -42,16 +37,16 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
+  // 5. Метод для скидання фільтрів
   public resetFilters(inputElement: HTMLInputElement): void {
     this.searchQuery = '';
     this.selectedStatus = 'All';
-    this.filterItems(); // Відправляємо порожній фільтр у сервіс
+    this.filterItems();
     if (inputElement) inputElement.focus();
   }
 
+  // 6. Метод для видалення (або іншої дії з карткою)
   public handleCardAction(id: string): void {
-    // Видаляємо проект через сервіс
     this.projectService.deleteItem(id);
-    // Оскільки ми в сервісі підписані на зміни, список оновиться автоматично!
   }
 }

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router'; // 1. Імпортуємо Router для навігації
+import { Router, RouterLink } from '@angular/router'; // 1. Імпортуємо Router для навігації
 import { ProjectStatus } from '../../shared/models/project'; 
 import { ProjectService } from '../../shared/services/project'; // 2. Імпортуємо сервіс
 import { forbiddenNameValidator } from '../../shared/validators/custom.validators';
@@ -9,7 +9,7 @@ import { forbiddenNameValidator } from '../../shared/validators/custom.validator
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.css',
 })

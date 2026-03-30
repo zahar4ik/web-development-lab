@@ -10,7 +10,7 @@ import { ProjectService } from '../../../shared/services/project';
 @Component({
   selector: 'web-project-details',
   standalone: true,
-  imports: [CommonModule, RouterLink], // Тепер RouterLink буде розпізнано
+  imports: [CommonModule], 
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.css'
 })

@@ -1,4 +1,4 @@
-import { StatusColorPipe } from './status-color-pipe';
+import { StatusColorPipe } from './status-color.pipe';
 
 describe('StatusColorPipe', () => {
   it('create an instance', () => {
