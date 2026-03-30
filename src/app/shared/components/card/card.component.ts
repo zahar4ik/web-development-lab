@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router'; // Додаємо імпорт для навігації
 import { Project, ProjectStatus } from '../../models/project';
+import { TruncatePipe } from '../pipes/truncate.pipe';
 
 @Component({
   selector: 'web-card',
   standalone: true,
-  imports: [CommonModule, RouterLink], // Додаємо RouterLink сюди
+  imports: [CommonModule, RouterLink, TruncatePipe],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })

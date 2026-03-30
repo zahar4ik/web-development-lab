@@ -20,7 +20,7 @@
     <h3 [routerLink]="['/product', project.id]" style="cursor: pointer; color: #2e7d32;">
       {{ project.title }}
     </h3>
-    <p class="description">{{ project.description }}</p>
+    <p class="description">{{ project.description | truncate:60 }}</p>
     
     <div class="details">
       <div class="status-indicator">
