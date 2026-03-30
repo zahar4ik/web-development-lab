@@ -1,0 +1,20 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'truncate',
+  standalone: true
+})
+export class TruncatePipe implements PipeTransform {
+  // Метод трансформації тексту
+  transform(value: string | null | undefined, limit: number = 50): string {
+    if (!value) {
+      return '';
+    }
+
+    if (value.length <= limit) {
+      return value;
+    }
+
+    return value.substring(0, limit) + '...';
+  }
+}
