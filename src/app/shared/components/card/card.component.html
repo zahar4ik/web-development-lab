@@ -1,4 +1,8 @@
-<div class="project-card" [class.premium-card]="project.price > 1000">
+<div 
+  class="project-card" 
+  [class.premium-card]="project.price > 1000"
+  [appHighlight]="'#f0fdf4'"
+>
   
   @if (project.price > 1000) {
     <div class="premium-label">⭐ PREMIUM</div>
@@ -20,16 +24,14 @@
     <h3 [routerLink]="['/product', project.id]" style="cursor: pointer; color: #2e7d32;">
       {{ project.title }}
     </h3>
+    
     <p class="description">{{ project.description | truncate:60 }}</p>
     
     <div class="details">
       <div class="status-indicator">
-        @switch (project.status) {
-          @case (ProjectStatus.Active) { <span class="badge badge-active">В процесі</span> }
-          @case (ProjectStatus.Completed) { <span class="badge badge-completed">Завершено</span> }
-          @case (ProjectStatus.Archived) { <span class="badge badge-archived">В архіві</span> }
-          @default { <span class="badge">Статус не визначено</span> }
-        }
+        <span class="badge" [style.backgroundColor]="project.status | statusColor">
+          {{ project.status }}
+        </span>
       </div>
       
       <div class="tags">

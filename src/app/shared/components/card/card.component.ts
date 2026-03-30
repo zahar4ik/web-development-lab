@@ -2,15 +2,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Project, ProjectStatus } from '../../models/project';
-
-// Переконайтеся, що файл реально лежить у папці shared/pipes/
-// Якщо не знаходить, спробуйте переписати шлях за допомогою автодоповнення VS Code
 import { TruncatePipe } from '../../pipes/truncate.pipe'; 
+import { StatusColorPipe } from '../../pipes/status-color.pipe';
+import { HighlightDirective } from '../../directives/highlight.directive';
 
 @Component({
   selector: 'web-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, TruncatePipe],
+  imports: [CommonModule, RouterLink, TruncatePipe, StatusColorPipe, HighlightDirective], 
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })
