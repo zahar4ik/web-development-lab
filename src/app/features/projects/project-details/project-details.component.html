@@ -1,7 +1,6 @@
-<div class="specs-box" *ngIf="project.specs">
-  <h3>Технічні деталі:</h3>
-  <ul>
-    <li><strong>Фреймворк:</strong> {{ project.specs.framework }}</li>
-    <li><strong>Тривалість:</strong> {{ project.specs.durationMonths }} місяців</li>
-  </ul>
+<div *ngIf="project$ | async as project">
+  <div class="specs-box" *ngIf="project.specs">
+    <strong>Фреймворк:</strong> {{ project.specs.framework }}
+    <strong>Тривалість:</strong> {{ project.specs.durationMonths }}
+  </div>
 </div>

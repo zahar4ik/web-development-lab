@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-import { Project } from '../../models/project';
+// Добавляем импорт ProjectStatus (предположительно из того же файла)
+import { Project, ProjectStatus } from '../../models/project';
 
 @Component({
   selector: 'web-card',
@@ -11,8 +12,10 @@ import { Project } from '../../models/project';
 })
 export class CardComponent {
   @Input({ required: true }) project!: Project;
-
   @Output() addToCart = new EventEmitter<string>();
+
+  // Делаем Enum доступным в шаблоне HTML
+  protected readonly ProjectStatus = ProjectStatus;
 
   onBtnClick(): void {
     this.addToCart.emit(this.project.id);

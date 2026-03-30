@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router'; // Для кнопки "Назад"
+import { RouterLink } from '@angular/router'; 
 import { Observable } from 'rxjs';
 import { Project } from '../../../shared/models/project';
 import { ProjectService } from '../../../shared/services/project';

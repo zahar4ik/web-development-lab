@@ -17,9 +17,9 @@
     <div class="details">
       <div class="status-indicator">
         @switch (project.status) {
-          @case ('Active') { <span class="badge badge-active">В процесі</span> }
-          @case ('Completed') { <span class="badge badge-completed">Завершено</span> }
-          @case ('Archived') { <span class="badge badge-archived">В архіві</span> }
+          @case (ProjectStatus.Active) { <span class="badge badge-active">В процесі</span> }
+          @case (ProjectStatus.Completed) { <span class="badge badge-completed">Завершено</span> }
+          @case (ProjectStatus.Archived) { <span class="badge badge-archived">В архіві</span> }
           @default { <span class="badge">Статус не визначено</span> }
         }
       </div>
